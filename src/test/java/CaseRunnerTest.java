@@ -47,4 +47,14 @@ public class CaseRunnerTest {
         assertThat(d, is(12.34D));
         assertThat(b, is((byte) 1));
     }
+
+    @Test
+    @Case({"HOGE"})
+    public void enumTest(Hoge h) {
+        assertThat(h, is(Hoge.HOGE));
+    }
+}
+
+enum Hoge {
+    HOGE,FUGA
 }

@@ -45,7 +45,10 @@ class InvokeCaseMethod extends InvokeMethod {
         method.invokeExplosively(target, params);
     }
 
-    private Parser findParser(Class<?> parameterType) {
+    private Parser findParser(Class parameterType) {
+        if (parameterType.isEnum()) {
+            return (String arg) -> Enum.valueOf(parameterType, arg);
+        }
         if (!parsers.containsKey(parameterType)) {
             throw new IllegalArgumentException("not support argument type." + parameterType);
         }
